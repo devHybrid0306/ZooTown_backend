@@ -1,0 +1,159 @@
+type AggregateCvDoctorReply {
+  count: Int!
+}
+
+type CvDoctorReply {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  attachments(where: CvFileWhereInput, orderBy: CvFileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CvFile!]
+  request: CvDoctor
+  request_id: String!
+  postedBy_id: String
+  postedBy: User
+}
+
+type CvDoctorReplyConnection {
+  pageInfo: PageInfo!
+  edges: [CvDoctorReplyEdge]!
+  aggregate: AggregateCvDoctorReply!
+}
+
+input CvDoctorReplyCreateInput {
+  id: ID
+  attachments: CvFileCreateManyInput
+  request: CvDoctorCreateOneInput
+  request_id: String!
+  postedBy_id: String
+  postedBy: UserCreateOneInput
+}
+
+type CvDoctorReplyEdge {
+  node: CvDoctorReply!
+  cursor: String!
+}
+
+enum CvDoctorReplyOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  request_id_ASC
+  request_id_DESC
+  postedBy_id_ASC
+  postedBy_id_DESC
+}
+
+type CvDoctorReplyPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  request_id: String!
+  postedBy_id: String
+}
+
+type CvDoctorReplySubscriptionPayload {
+  mutation: MutationType!
+  node: CvDoctorReply
+  updatedFields: [String!]
+  previousValues: CvDoctorReplyPreviousValues
+}
+
+input CvDoctorReplySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CvDoctorReplyWhereInput
+  AND: [CvDoctorReplySubscriptionWhereInput!]
+  OR: [CvDoctorReplySubscriptionWhereInput!]
+  NOT: [CvDoctorReplySubscriptionWhereInput!]
+}
+
+input CvDoctorReplyUpdateInput {
+  attachments: CvFileUpdateManyInput
+  request: CvDoctorUpdateOneInput
+  request_id: String
+  postedBy_id: String
+  postedBy: UserUpdateOneInput
+}
+
+input CvDoctorReplyUpdateManyMutationInput {
+  request_id: String
+  postedBy_id: String
+}
+
+input CvDoctorReplyWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  attachments_every: CvFileWhereInput
+  attachments_some: CvFileWhereInput
+  attachments_none: CvFileWhereInput
+  request: CvDoctorWhereInput
+  request_id: String
+  request_id_not: String
+  request_id_in: [String!]
+  request_id_not_in: [String!]
+  request_id_lt: String
+  request_id_lte: String
+  request_id_gt: String
+  request_id_gte: String
+  request_id_contains: String
+  request_id_not_contains: String
+  request_id_starts_with: String
+  request_id_not_starts_with: String
+  request_id_ends_with: String
+  request_id_not_ends_with: String
+  postedBy_id: String
+  postedBy_id_not: String
+  postedBy_id_in: [String!]
+  postedBy_id_not_in: [String!]
+  postedBy_id_lt: String
+  postedBy_id_lte: String
+  postedBy_id_gt: String
+  postedBy_id_gte: String
+  postedBy_id_contains: String
+  postedBy_id_not_contains: String
+  postedBy_id_starts_with: String
+  postedBy_id_not_starts_with: String
+  postedBy_id_ends_with: String
+  postedBy_id_not_ends_with: String
+  postedBy: UserWhereInput
+  AND: [CvDoctorReplyWhereInput!]
+  OR: [CvDoctorReplyWhereInput!]
+  NOT: [CvDoctorReplyWhereInput!]
+}
+
+input CvDoctorReplyWhereUniqueInput {
+  id: ID
+}

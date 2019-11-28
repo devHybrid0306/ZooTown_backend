@@ -1,0 +1,198 @@
+# import User from "user.graphql"
+# import Post from "post.graphql" 
+# import Plan from "plan.graphql"
+# import Company from "company.graphql"
+# import File from "file.graphql"
+# import Job from "job.graphql"
+# import JobApplication from "jobapplication.graphql"
+# import Project from "project.graphql"
+# import ProjectApplication from "projectapplication.graphql"
+# import SavedJob from "savedjob.graphql"
+# import SavedProject from "savedproject.graphql"
+# import CvFile from "cvfile.graphql"
+# import CvDoctor from "cvdoctor.graphql"
+# import CvDoctorReply from "cvdoctorreply.graphql"
+scalar DateTime
+scalar Json
+scalar Long
+scalar Upload
+type BatchPayload {
+  count: Long!
+}
+interface Node {
+  id: ID!
+}
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+type Query {
+  me: User
+  feed: [Post!]!
+  filterPosts(searchString: String): [Post!]!
+  company(where: CompanyWhereUniqueInput!): Company
+  companies(where: CompanyWhereInput, orderBy: CompanyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Company]!
+  companiesConnection(where: CompanyWhereInput, orderBy: CompanyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CompanyConnection!
+  cvDoctor(where: CvDoctorWhereUniqueInput!): CvDoctor
+  cvDoctors(where: CvDoctorWhereInput, orderBy: CvDoctorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CvDoctor]!
+  cvDoctorsConnection(where: CvDoctorWhereInput, orderBy: CvDoctorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CvDoctorConnection!
+  cvDoctorReply(where: CvDoctorReplyWhereUniqueInput!): CvDoctorReply
+  cvDoctorReplies(where: CvDoctorReplyWhereInput, orderBy: CvDoctorReplyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CvDoctorReply]!
+  cvDoctorRepliesConnection(where: CvDoctorReplyWhereInput, orderBy: CvDoctorReplyOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CvDoctorReplyConnection!
+  file(where: FileWhereUniqueInput!): File
+  files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File]!
+  filesConnection(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
+  job(where: JobWhereUniqueInput!): Job
+  jobs(where: JobWhereInput, orderBy: JobOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Job]!
+  jobsConnection(where: JobWhereInput, orderBy: JobOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobConnection!
+  jobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
+  jobApplications(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [JobApplication]!
+  jobApplicationsConnection(where: JobApplicationWhereInput, orderBy: JobApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): JobApplicationConnection!
+  plan(where: PlanWhereUniqueInput!): Plan
+  plans(where: PlanWhereInput, orderBy: PlanOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Plan]!
+  plansConnection(where: PlanWhereInput, orderBy: PlanOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PlanConnection!
+  post(where: PostWhereUniqueInput!): Post
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
+  postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
+  project(where: ProjectWhereUniqueInput!): Project
+  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
+  projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
+  projectApplication(where: ProjectApplicationWhereUniqueInput!): ProjectApplication
+  projectApplications(where: ProjectApplicationWhereInput, orderBy: ProjectApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplication]!
+  projectApplicationsConnection(where: ProjectApplicationWhereInput, orderBy: ProjectApplicationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectApplicationConnection!
+  savedJob(where: SavedJobWhereUniqueInput!): SavedJob
+  savedJobs(where: SavedJobWhereInput, orderBy: SavedJobOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SavedJob]!
+  savedJobsConnection(where: SavedJobWhereInput, orderBy: SavedJobOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SavedJobConnection!
+  savedProject(where: SavedProjectWhereUniqueInput!): SavedProject
+  savedProjects(where: SavedProjectWhereInput, orderBy: SavedProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SavedProject]!
+  savedProjectsConnection(where: SavedProjectWhereInput, orderBy: SavedProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SavedProjectConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+  cvFile(where: CvFileWhereUniqueInput!): CvFile
+  cvFiles(where: CvFileWhereInput, orderBy: CvFileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CvFile]!
+  cvFilesConnection(where: CvFileWhereInput, orderBy: CvFileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CvFileConnection!
+}
+
+type Mutation {
+  createDraft(title: String!, content: String): Post!
+  publish(id: ID!): Post
+  signup(data: UserCreateInput!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  uploadFile(file: Upload!): File!
+  uploadCvFile(file: Upload!): CvFile!
+  createCompany(data: CompanyCreateInput!): Company!
+  updateCompany(data: CompanyUpdateInput!, where: CompanyWhereUniqueInput!): Company
+  updateManyCompanies(data: CompanyUpdateManyMutationInput!, where: CompanyWhereInput): BatchPayload!
+  upsertCompany(where: CompanyWhereUniqueInput!, create: CompanyCreateInput!, update: CompanyUpdateInput!): Company!
+  deleteCompany(where: CompanyWhereUniqueInput!): Company
+  deleteManyCompanies(where: CompanyWhereInput): BatchPayload!
+  createCvDoctor(data: CvDoctorCreateInput!): CvDoctor!
+  updateCvDoctor(data: CvDoctorUpdateInput!, where: CvDoctorWhereUniqueInput!): CvDoctor
+  updateManyCvDoctors(data: CvDoctorUpdateManyMutationInput!, where: CvDoctorWhereInput): BatchPayload!
+  upsertCvDoctor(where: CvDoctorWhereUniqueInput!, create: CvDoctorCreateInput!, update: CvDoctorUpdateInput!): CvDoctor!
+  deleteCvDoctor(where: CvDoctorWhereUniqueInput!): CvDoctor
+  deleteManyCvDoctors(where: CvDoctorWhereInput): BatchPayload!
+  createCvDoctorReply(data: CvDoctorReplyCreateInput!): CvDoctorReply!
+  updateCvDoctorReply(data: CvDoctorReplyUpdateInput!, where: CvDoctorReplyWhereUniqueInput!): CvDoctorReply
+  updateManyCvDoctorReplies(data: CvDoctorReplyUpdateManyMutationInput!, where: CvDoctorReplyWhereInput): BatchPayload!
+  upsertCvDoctorReply(where: CvDoctorReplyWhereUniqueInput!, create: CvDoctorReplyCreateInput!, update: CvDoctorReplyUpdateInput!): CvDoctorReply!
+  deleteCvDoctorReply(where: CvDoctorReplyWhereUniqueInput!): CvDoctorReply
+  deleteManyCvDoctorReplies(where: CvDoctorReplyWhereInput): BatchPayload!
+  createFile(data: FileCreateInput!): File!
+  updateFile(data: FileUpdateInput!, where: FileWhereUniqueInput!): File
+  updateManyFiles(data: FileUpdateManyMutationInput!, where: FileWhereInput): BatchPayload!
+  upsertFile(where: FileWhereUniqueInput!, create: FileCreateInput!, update: FileUpdateInput!): File!
+  deleteFile(where: FileWhereUniqueInput!): File
+  deleteManyFiles(where: FileWhereInput): BatchPayload!
+  createJob(data: JobCreateInput!): Job!
+  updateJob(data: JobUpdateInput!, where: JobWhereUniqueInput!): Job
+  updateManyJobs(data: JobUpdateManyMutationInput!, where: JobWhereInput): BatchPayload!
+  upsertJob(where: JobWhereUniqueInput!, create: JobCreateInput!, update: JobUpdateInput!): Job!
+  deleteJob(where: JobWhereUniqueInput!): Job
+  deleteManyJobs(where: JobWhereInput): BatchPayload!
+  createJobApplication(data: JobApplicationCreateInput!): JobApplication!
+  updateJobApplication(data: JobApplicationUpdateInput!, where: JobApplicationWhereUniqueInput!): JobApplication
+  updateManyJobApplications(data: JobApplicationUpdateManyMutationInput!, where: JobApplicationWhereInput): BatchPayload!
+  upsertJobApplication(where: JobApplicationWhereUniqueInput!, create: JobApplicationCreateInput!, update: JobApplicationUpdateInput!): JobApplication!
+  deleteJobApplication(where: JobApplicationWhereUniqueInput!): JobApplication
+  deleteManyJobApplications(where: JobApplicationWhereInput): BatchPayload!
+  createPlan(data: PlanCreateInput!): Plan!
+  updatePlan(data: PlanUpdateInput!, where: PlanWhereUniqueInput!): Plan
+  updateManyPlans(data: PlanUpdateManyMutationInput!, where: PlanWhereInput): BatchPayload!
+  upsertPlan(where: PlanWhereUniqueInput!, create: PlanCreateInput!, update: PlanUpdateInput!): Plan!
+  deletePlan(where: PlanWhereUniqueInput!): Plan
+  deleteManyPlans(where: PlanWhereInput): BatchPayload!
+  createPost(data: PostCreateInput!): Post!
+  updatePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
+  deletePost(where: PostWhereUniqueInput!): Post
+  deleteManyPosts(where: PostWhereInput): BatchPayload!
+  createProject(data: ProjectCreateInput!): Project!
+  updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
+  updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
+  upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
+  deleteProject(where: ProjectWhereUniqueInput!): Project
+  deleteManyProjects(where: ProjectWhereInput): BatchPayload!
+  createProjectApplication(data: ProjectApplicationCreateInput!): ProjectApplication!
+  updateProjectApplication(data: ProjectApplicationUpdateInput!, where: ProjectApplicationWhereUniqueInput!): ProjectApplication
+  updateManyProjectApplications(data: ProjectApplicationUpdateManyMutationInput!, where: ProjectApplicationWhereInput): BatchPayload!
+  upsertProjectApplication(where: ProjectApplicationWhereUniqueInput!, create: ProjectApplicationCreateInput!, update: ProjectApplicationUpdateInput!): ProjectApplication!
+  deleteProjectApplication(where: ProjectApplicationWhereUniqueInput!): ProjectApplication
+  deleteManyProjectApplications(where: ProjectApplicationWhereInput): BatchPayload!
+  createSavedJob(data: SavedJobCreateInput!): SavedJob!
+  updateSavedJob(data: SavedJobUpdateInput!, where: SavedJobWhereUniqueInput!): SavedJob
+  updateManySavedJobs(data: SavedJobUpdateManyMutationInput!, where: SavedJobWhereInput): BatchPayload!
+  upsertSavedJob(where: SavedJobWhereUniqueInput!, create: SavedJobCreateInput!, update: SavedJobUpdateInput!): SavedJob!
+  deleteSavedJob(where: SavedJobWhereUniqueInput!): SavedJob
+  deleteManySavedJobs(where: SavedJobWhereInput): BatchPayload!
+  createSavedProject(data: SavedProjectCreateInput!): SavedProject!
+  updateSavedProject(data: SavedProjectUpdateInput!, where: SavedProjectWhereUniqueInput!): SavedProject
+  updateManySavedProjects(data: SavedProjectUpdateManyMutationInput!, where: SavedProjectWhereInput): BatchPayload!
+  upsertSavedProject(where: SavedProjectWhereUniqueInput!, create: SavedProjectCreateInput!, update: SavedProjectUpdateInput!): SavedProject!
+  deleteSavedProject(where: SavedProjectWhereUniqueInput!): SavedProject
+  deleteManySavedProjects(where: SavedProjectWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  createCvFile(data: CvFileCreateInput!): CvFile!
+  updateCvFile(data: CvFileUpdateInput!, where: CvFileWhereUniqueInput!): CvFile
+  updateManyCvFiles(data: CvFileUpdateManyMutationInput!, where: CvFileWhereInput): BatchPayload!
+  upsertCvFile(where: CvFileWhereUniqueInput!, create: CvFileCreateInput!, update: CvFileUpdateInput!): CvFile!
+  deleteCvFile(where: CvFileWhereUniqueInput!): CvFile
+  deleteManyCvFiles(where: CvFileWhereInput): BatchPayload!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Subscription {
+  company(where: CompanySubscriptionWhereInput): CompanySubscriptionPayload
+  cvDoctor(where: CvDoctorSubscriptionWhereInput): CvDoctorSubscriptionPayload
+  cvDoctorReply(where: CvDoctorReplySubscriptionWhereInput): CvDoctorReplySubscriptionPayload
+  cvFile(where: CvFileSubscriptionWhereInput): CvFileSubscriptionPayload
+  file(where: FileSubscriptionWhereInput): FileSubscriptionPayload
+  job(where: JobSubscriptionWhereInput): JobSubscriptionPayload
+  jobApplication(where: JobApplicationSubscriptionWhereInput): JobApplicationSubscriptionPayload
+  plan(where: PlanSubscriptionWhereInput): PlanSubscriptionPayload
+  post(where: PostSubscriptionWhereInput): PostSubscriptionPayload
+  project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
+  projectApplication(where: ProjectApplicationSubscriptionWhereInput): ProjectApplicationSubscriptionPayload
+  savedJob(where: SavedJobSubscriptionWhereInput): SavedJobSubscriptionPayload
+  savedProject(where: SavedProjectSubscriptionWhereInput): SavedProjectSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}

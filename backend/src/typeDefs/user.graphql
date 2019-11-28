@@ -1,0 +1,872 @@
+# import Post from "post.graphql" 
+# import Plan from "plan.graphql"
+# import Company from "company.graphql"
+scalar Json
+type AggregateUser {
+  count: Int!
+}
+type User {
+  id: ID!
+  email: String!
+  password: String!
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json!
+  student_confirm: File
+  photo_url(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
+  signup_reason: String!
+  uk_citizen: Boolean!
+  legal_right: Boolean!
+  how_hear: String!
+  posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: Plan
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isApproved: Boolean
+  isRecruiter: Boolean
+  company: Company
+  degree_profile: Json
+  phonenumber: String
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  email: String!
+  password: String!
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json!
+  student_confirm: FileCreateOneInput
+  photo_url: FileCreateManyInput
+  signup_reason: String!
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String!
+  posts: PostCreateManyWithoutAuthorInput
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: PlanCreateOneInput
+  isApproved: Boolean
+  isRecruiter: Boolean
+  company: CompanyCreateOneWithoutRecruitersInput
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserCreateManyWithoutCompanyInput {
+  create: [UserCreateWithoutCompanyInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateWithoutCompanyInput {
+  id: ID
+  email: String!
+  password: String!
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json!
+  student_confirm: FileCreateOneInput
+  photo_url: FileCreateManyInput
+  signup_reason: String!
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String!
+  posts: PostCreateManyWithoutAuthorInput
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: PlanCreateOneInput
+  isApproved: Boolean
+  isRecruiter: Boolean
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserCreateWithoutPostsInput {
+  id: ID
+  email: String!
+  password: String!
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json!
+  student_confirm: FileCreateOneInput
+  photo_url: FileCreateManyInput
+  signup_reason: String!
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String!
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: PlanCreateOneInput
+  isApproved: Boolean
+  isRecruiter: Boolean
+  company: CompanyCreateOneWithoutRecruitersInput
+  degree_profile: Json
+  phonenumber: String
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  email_ASC
+  email_DESC
+  password_ASC
+  password_DESC
+  first_name_ASC
+  first_name_DESC
+  last_name_ASC
+  last_name_DESC
+  dob_ASC
+  dob_DESC
+  home_address_ASC
+  home_address_DESC
+  utc_number_ASC
+  utc_number_DESC
+  hobbies_ASC
+  hobbies_DESC
+  signup_reason_ASC
+  signup_reason_DESC
+  uk_citizen_ASC
+  uk_citizen_DESC
+  legal_right_ASC
+  legal_right_DESC
+  how_hear_ASC
+  how_hear_DESC
+  user_type_ASC
+  user_type_DESC
+  languages_ASC
+  languages_DESC
+  education_level_ASC
+  education_level_DESC
+  job_title_ASC
+  job_title_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  isApproved_ASC
+  isApproved_DESC
+  isRecruiter_ASC
+  isRecruiter_DESC
+  degree_profile_ASC
+  degree_profile_DESC
+  phonenumber_ASC
+  phonenumber_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  email: String!
+  password: String!
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json!
+  signup_reason: String!
+  uk_citizen: Boolean!
+  legal_right: Boolean!
+  how_hear: String!
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isApproved: Boolean
+  isRecruiter: Boolean
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  first_name: String
+  first_name_not: String
+  first_name_in: [String!]
+  first_name_not_in: [String!]
+  first_name_lt: String
+  first_name_lte: String
+  first_name_gt: String
+  first_name_gte: String
+  first_name_contains: String
+  first_name_not_contains: String
+  first_name_starts_with: String
+  first_name_not_starts_with: String
+  first_name_ends_with: String
+  first_name_not_ends_with: String
+  last_name: String
+  last_name_not: String
+  last_name_in: [String!]
+  last_name_not_in: [String!]
+  last_name_lt: String
+  last_name_lte: String
+  last_name_gt: String
+  last_name_gte: String
+  last_name_contains: String
+  last_name_not_contains: String
+  last_name_starts_with: String
+  last_name_not_starts_with: String
+  last_name_ends_with: String
+  last_name_not_ends_with: String
+  dob: DateTime
+  dob_not: DateTime
+  dob_in: [DateTime!]
+  dob_not_in: [DateTime!]
+  dob_lt: DateTime
+  dob_lte: DateTime
+  dob_gt: DateTime
+  dob_gte: DateTime
+  home_address: String
+  home_address_not: String
+  home_address_in: [String!]
+  home_address_not_in: [String!]
+  home_address_lt: String
+  home_address_lte: String
+  home_address_gt: String
+  home_address_gte: String
+  home_address_contains: String
+  home_address_not_contains: String
+  home_address_starts_with: String
+  home_address_not_starts_with: String
+  home_address_ends_with: String
+  home_address_not_ends_with: String
+  utc_number: String
+  utc_number_not: String
+  utc_number_in: [String!]
+  utc_number_not_in: [String!]
+  utc_number_lt: String
+  utc_number_lte: String
+  utc_number_gt: String
+  utc_number_gte: String
+  utc_number_contains: String
+  utc_number_not_contains: String
+  utc_number_starts_with: String
+  utc_number_not_starts_with: String
+  utc_number_ends_with: String
+  utc_number_not_ends_with: String
+  signup_reason: String
+  signup_reason_not: String
+  signup_reason_in: [String!]
+  signup_reason_not_in: [String!]
+  signup_reason_lt: String
+  signup_reason_lte: String
+  signup_reason_gt: String
+  signup_reason_gte: String
+  signup_reason_contains: String
+  signup_reason_not_contains: String
+  signup_reason_starts_with: String
+  signup_reason_not_starts_with: String
+  signup_reason_ends_with: String
+  signup_reason_not_ends_with: String
+  uk_citizen: Boolean
+  uk_citizen_not: Boolean
+  legal_right: Boolean
+  legal_right_not: Boolean
+  how_hear: String
+  how_hear_not: String
+  how_hear_in: [String!]
+  how_hear_not_in: [String!]
+  how_hear_lt: String
+  how_hear_lte: String
+  how_hear_gt: String
+  how_hear_gte: String
+  how_hear_contains: String
+  how_hear_not_contains: String
+  how_hear_starts_with: String
+  how_hear_not_starts_with: String
+  how_hear_ends_with: String
+  how_hear_not_ends_with: String
+  user_type: Int
+  user_type_not: Int
+  user_type_in: [Int!]
+  user_type_not_in: [Int!]
+  user_type_lt: Int
+  user_type_lte: Int
+  user_type_gt: Int
+  user_type_gte: Int
+  job_title: String
+  job_title_not: String
+  job_title_in: [String!]
+  job_title_not_in: [String!]
+  job_title_lt: String
+  job_title_lte: String
+  job_title_gt: String
+  job_title_gte: String
+  job_title_contains: String
+  job_title_not_contains: String
+  job_title_starts_with: String
+  job_title_not_starts_with: String
+  job_title_ends_with: String
+  job_title_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  isApproved: Boolean
+  isApproved_not: Boolean
+  isRecruiter: Boolean
+  isRecruiter_not: Boolean
+  phonenumber: String
+  phonenumber_not: String
+  phonenumber_in: [String!]
+  phonenumber_not_in: [String!]
+  phonenumber_lt: String
+  phonenumber_lte: String
+  phonenumber_gt: String
+  phonenumber_gte: String
+  phonenumber_contains: String
+  phonenumber_not_contains: String
+  phonenumber_starts_with: String
+  phonenumber_not_starts_with: String
+  phonenumber_ends_with: String
+  phonenumber_not_ends_with: String
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateDataInput {
+  email: String
+  password: String
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json
+  student_confirm: FileUpdateOneInput
+  photo_url: FileUpdateManyInput
+  signup_reason: String
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String
+  posts: PostUpdateManyWithoutAuthorInput
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: PlanUpdateOneInput
+  isApproved: Boolean
+  isRecruiter: Boolean
+  company: CompanyUpdateOneWithoutRecruitersInput
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserUpdateInput {
+  email: String
+  password: String
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json
+  student_confirm: FileUpdateOneInput
+  photo_url: FileUpdateManyInput
+  signup_reason: String
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String
+  posts: PostUpdateManyWithoutAuthorInput
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: PlanUpdateOneInput
+  isApproved: Boolean
+  isRecruiter: Boolean
+  company: CompanyUpdateOneWithoutRecruitersInput
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserUpdateManyDataInput {
+  email: String
+  password: String
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json
+  signup_reason: String
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  isApproved: Boolean
+  isRecruiter: Boolean
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserUpdateManyMutationInput {
+  email: String
+  password: String
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json
+  signup_reason: String
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  isApproved: Boolean
+  isRecruiter: Boolean
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserUpdateManyWithoutCompanyInput {
+  create: [UserCreateWithoutCompanyInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutCompanyInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutCompanyInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutPostsInput {
+  create: UserCreateWithoutPostsInput
+  update: UserUpdateWithoutPostsDataInput
+  upsert: UserUpsertWithoutPostsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateWithoutCompanyDataInput {
+  email: String
+  password: String
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json
+  student_confirm: FileUpdateOneInput
+  photo_url: FileUpdateManyInput
+  signup_reason: String
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String
+  posts: PostUpdateManyWithoutAuthorInput
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: PlanUpdateOneInput
+  isApproved: Boolean
+  isRecruiter: Boolean
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserUpdateWithoutPostsDataInput {
+  email: String
+  password: String
+  first_name: String
+  last_name: String
+  dob: DateTime
+  home_address: String
+  utc_number: String
+  hobbies: Json
+  student_confirm: FileUpdateOneInput
+  photo_url: FileUpdateManyInput
+  signup_reason: String
+  uk_citizen: Boolean
+  legal_right: Boolean
+  how_hear: String
+  user_type: Int
+  languages: Json
+  education_level: Json
+  job_title: String
+  plan: PlanUpdateOneInput
+  isApproved: Boolean
+  isRecruiter: Boolean
+  company: CompanyUpdateOneWithoutRecruitersInput
+  degree_profile: Json
+  phonenumber: String
+}
+
+input UserUpdateWithWhereUniqueWithoutCompanyInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutCompanyDataInput!
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
+}
+
+input UserUpsertWithoutPostsInput {
+  update: UserUpdateWithoutPostsDataInput!
+  create: UserCreateWithoutPostsInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutCompanyInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutCompanyDataInput!
+  create: UserCreateWithoutCompanyInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  first_name: String
+  first_name_not: String
+  first_name_in: [String!]
+  first_name_not_in: [String!]
+  first_name_lt: String
+  first_name_lte: String
+  first_name_gt: String
+  first_name_gte: String
+  first_name_contains: String
+  first_name_not_contains: String
+  first_name_starts_with: String
+  first_name_not_starts_with: String
+  first_name_ends_with: String
+  first_name_not_ends_with: String
+  last_name: String
+  last_name_not: String
+  last_name_in: [String!]
+  last_name_not_in: [String!]
+  last_name_lt: String
+  last_name_lte: String
+  last_name_gt: String
+  last_name_gte: String
+  last_name_contains: String
+  last_name_not_contains: String
+  last_name_starts_with: String
+  last_name_not_starts_with: String
+  last_name_ends_with: String
+  last_name_not_ends_with: String
+  dob: DateTime
+  dob_not: DateTime
+  dob_in: [DateTime!]
+  dob_not_in: [DateTime!]
+  dob_lt: DateTime
+  dob_lte: DateTime
+  dob_gt: DateTime
+  dob_gte: DateTime
+  home_address: String
+  home_address_not: String
+  home_address_in: [String!]
+  home_address_not_in: [String!]
+  home_address_lt: String
+  home_address_lte: String
+  home_address_gt: String
+  home_address_gte: String
+  home_address_contains: String
+  home_address_not_contains: String
+  home_address_starts_with: String
+  home_address_not_starts_with: String
+  home_address_ends_with: String
+  home_address_not_ends_with: String
+  utc_number: String
+  utc_number_not: String
+  utc_number_in: [String!]
+  utc_number_not_in: [String!]
+  utc_number_lt: String
+  utc_number_lte: String
+  utc_number_gt: String
+  utc_number_gte: String
+  utc_number_contains: String
+  utc_number_not_contains: String
+  utc_number_starts_with: String
+  utc_number_not_starts_with: String
+  utc_number_ends_with: String
+  utc_number_not_ends_with: String
+  student_confirm: FileWhereInput
+  photo_url_every: FileWhereInput
+  photo_url_some: FileWhereInput
+  photo_url_none: FileWhereInput
+  signup_reason: String
+  signup_reason_not: String
+  signup_reason_in: [String!]
+  signup_reason_not_in: [String!]
+  signup_reason_lt: String
+  signup_reason_lte: String
+  signup_reason_gt: String
+  signup_reason_gte: String
+  signup_reason_contains: String
+  signup_reason_not_contains: String
+  signup_reason_starts_with: String
+  signup_reason_not_starts_with: String
+  signup_reason_ends_with: String
+  signup_reason_not_ends_with: String
+  uk_citizen: Boolean
+  uk_citizen_not: Boolean
+  legal_right: Boolean
+  legal_right_not: Boolean
+  how_hear: String
+  how_hear_not: String
+  how_hear_in: [String!]
+  how_hear_not_in: [String!]
+  how_hear_lt: String
+  how_hear_lte: String
+  how_hear_gt: String
+  how_hear_gte: String
+  how_hear_contains: String
+  how_hear_not_contains: String
+  how_hear_starts_with: String
+  how_hear_not_starts_with: String
+  how_hear_ends_with: String
+  how_hear_not_ends_with: String
+  posts_every: PostWhereInput
+  posts_some: PostWhereInput
+  posts_none: PostWhereInput
+  user_type: Int
+  user_type_not: Int
+  user_type_in: [Int!]
+  user_type_not_in: [Int!]
+  user_type_lt: Int
+  user_type_lte: Int
+  user_type_gt: Int
+  user_type_gte: Int
+  job_title: String
+  job_title_not: String
+  job_title_in: [String!]
+  job_title_not_in: [String!]
+  job_title_lt: String
+  job_title_lte: String
+  job_title_gt: String
+  job_title_gte: String
+  job_title_contains: String
+  job_title_not_contains: String
+  job_title_starts_with: String
+  job_title_not_starts_with: String
+  job_title_ends_with: String
+  job_title_not_ends_with: String
+  plan: PlanWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  isApproved: Boolean
+  isApproved_not: Boolean
+  isRecruiter: Boolean
+  isRecruiter_not: Boolean
+  company: CompanyWhereInput
+  phonenumber: String
+  phonenumber_not: String
+  phonenumber_in: [String!]
+  phonenumber_not_in: [String!]
+  phonenumber_lt: String
+  phonenumber_lte: String
+  phonenumber_gt: String
+  phonenumber_gte: String
+  phonenumber_contains: String
+  phonenumber_not_contains: String
+  phonenumber_starts_with: String
+  phonenumber_not_starts_with: String
+  phonenumber_ends_with: String
+  phonenumber_not_ends_with: String
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}

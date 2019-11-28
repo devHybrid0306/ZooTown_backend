@@ -1,0 +1,363 @@
+type AggregateProjectApplication {
+  count: Int!
+}
+
+type ProjectApplication {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  proposal: String
+  attachments(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
+  user_id: String!
+  user: User
+  proposed_budget: Float
+  proposed_duration: String
+}
+
+type ProjectApplicationConnection {
+  pageInfo: PageInfo!
+  edges: [ProjectApplicationEdge]!
+  aggregate: AggregateProjectApplication!
+}
+
+input ProjectApplicationCreateInput {
+  id: ID
+  title: String!
+  proposal: String
+  attachments: FileCreateManyInput
+  user_id: String!
+  user: UserCreateOneInput
+  proposed_budget: Float
+  proposed_duration: String
+}
+
+input ProjectApplicationCreateManyInput {
+  create: [ProjectApplicationCreateInput!]
+  connect: [ProjectApplicationWhereUniqueInput!]
+}
+
+type ProjectApplicationEdge {
+  node: ProjectApplication!
+  cursor: String!
+}
+
+enum ProjectApplicationOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  title_ASC
+  title_DESC
+  proposal_ASC
+  proposal_DESC
+  user_id_ASC
+  user_id_DESC
+  proposed_budget_ASC
+  proposed_budget_DESC
+  proposed_duration_ASC
+  proposed_duration_DESC
+}
+
+type ProjectApplicationPreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String!
+  proposal: String
+  user_id: String!
+  proposed_budget: Float
+  proposed_duration: String
+}
+
+input ProjectApplicationScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  proposal: String
+  proposal_not: String
+  proposal_in: [String!]
+  proposal_not_in: [String!]
+  proposal_lt: String
+  proposal_lte: String
+  proposal_gt: String
+  proposal_gte: String
+  proposal_contains: String
+  proposal_not_contains: String
+  proposal_starts_with: String
+  proposal_not_starts_with: String
+  proposal_ends_with: String
+  proposal_not_ends_with: String
+  user_id: String
+  user_id_not: String
+  user_id_in: [String!]
+  user_id_not_in: [String!]
+  user_id_lt: String
+  user_id_lte: String
+  user_id_gt: String
+  user_id_gte: String
+  user_id_contains: String
+  user_id_not_contains: String
+  user_id_starts_with: String
+  user_id_not_starts_with: String
+  user_id_ends_with: String
+  user_id_not_ends_with: String
+  proposed_budget: Float
+  proposed_budget_not: Float
+  proposed_budget_in: [Float!]
+  proposed_budget_not_in: [Float!]
+  proposed_budget_lt: Float
+  proposed_budget_lte: Float
+  proposed_budget_gt: Float
+  proposed_budget_gte: Float
+  proposed_duration: String
+  proposed_duration_not: String
+  proposed_duration_in: [String!]
+  proposed_duration_not_in: [String!]
+  proposed_duration_lt: String
+  proposed_duration_lte: String
+  proposed_duration_gt: String
+  proposed_duration_gte: String
+  proposed_duration_contains: String
+  proposed_duration_not_contains: String
+  proposed_duration_starts_with: String
+  proposed_duration_not_starts_with: String
+  proposed_duration_ends_with: String
+  proposed_duration_not_ends_with: String
+  AND: [ProjectApplicationScalarWhereInput!]
+  OR: [ProjectApplicationScalarWhereInput!]
+  NOT: [ProjectApplicationScalarWhereInput!]
+}
+
+type ProjectApplicationSubscriptionPayload {
+  mutation: MutationType!
+  node: ProjectApplication
+  updatedFields: [String!]
+  previousValues: ProjectApplicationPreviousValues
+}
+
+input ProjectApplicationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProjectApplicationWhereInput
+  AND: [ProjectApplicationSubscriptionWhereInput!]
+  OR: [ProjectApplicationSubscriptionWhereInput!]
+  NOT: [ProjectApplicationSubscriptionWhereInput!]
+}
+
+input ProjectApplicationUpdateDataInput {
+  title: String
+  proposal: String
+  attachments: FileUpdateManyInput
+  user_id: String
+  user: UserUpdateOneInput
+  proposed_budget: Float
+  proposed_duration: String
+}
+
+input ProjectApplicationUpdateInput {
+  title: String
+  proposal: String
+  attachments: FileUpdateManyInput
+  user_id: String
+  user: UserUpdateOneInput
+  proposed_budget: Float
+  proposed_duration: String
+}
+
+input ProjectApplicationUpdateManyDataInput {
+  title: String
+  proposal: String
+  user_id: String
+  proposed_budget: Float
+  proposed_duration: String
+}
+
+input ProjectApplicationUpdateManyInput {
+  create: [ProjectApplicationCreateInput!]
+  update: [ProjectApplicationUpdateWithWhereUniqueNestedInput!]
+  upsert: [ProjectApplicationUpsertWithWhereUniqueNestedInput!]
+  delete: [ProjectApplicationWhereUniqueInput!]
+  connect: [ProjectApplicationWhereUniqueInput!]
+  set: [ProjectApplicationWhereUniqueInput!]
+  disconnect: [ProjectApplicationWhereUniqueInput!]
+  deleteMany: [ProjectApplicationScalarWhereInput!]
+  updateMany: [ProjectApplicationUpdateManyWithWhereNestedInput!]
+}
+
+input ProjectApplicationUpdateManyMutationInput {
+  title: String
+  proposal: String
+  user_id: String
+  proposed_budget: Float
+  proposed_duration: String
+}
+
+input ProjectApplicationUpdateManyWithWhereNestedInput {
+  where: ProjectApplicationScalarWhereInput!
+  data: ProjectApplicationUpdateManyDataInput!
+}
+
+input ProjectApplicationUpdateWithWhereUniqueNestedInput {
+  where: ProjectApplicationWhereUniqueInput!
+  data: ProjectApplicationUpdateDataInput!
+}
+
+input ProjectApplicationUpsertWithWhereUniqueNestedInput {
+  where: ProjectApplicationWhereUniqueInput!
+  update: ProjectApplicationUpdateDataInput!
+  create: ProjectApplicationCreateInput!
+}
+
+input ProjectApplicationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  proposal: String
+  proposal_not: String
+  proposal_in: [String!]
+  proposal_not_in: [String!]
+  proposal_lt: String
+  proposal_lte: String
+  proposal_gt: String
+  proposal_gte: String
+  proposal_contains: String
+  proposal_not_contains: String
+  proposal_starts_with: String
+  proposal_not_starts_with: String
+  proposal_ends_with: String
+  proposal_not_ends_with: String
+  attachments_every: FileWhereInput
+  attachments_some: FileWhereInput
+  attachments_none: FileWhereInput
+  user_id: String
+  user_id_not: String
+  user_id_in: [String!]
+  user_id_not_in: [String!]
+  user_id_lt: String
+  user_id_lte: String
+  user_id_gt: String
+  user_id_gte: String
+  user_id_contains: String
+  user_id_not_contains: String
+  user_id_starts_with: String
+  user_id_not_starts_with: String
+  user_id_ends_with: String
+  user_id_not_ends_with: String
+  user: UserWhereInput
+  proposed_budget: Float
+  proposed_budget_not: Float
+  proposed_budget_in: [Float!]
+  proposed_budget_not_in: [Float!]
+  proposed_budget_lt: Float
+  proposed_budget_lte: Float
+  proposed_budget_gt: Float
+  proposed_budget_gte: Float
+  proposed_duration: String
+  proposed_duration_not: String
+  proposed_duration_in: [String!]
+  proposed_duration_not_in: [String!]
+  proposed_duration_lt: String
+  proposed_duration_lte: String
+  proposed_duration_gt: String
+  proposed_duration_gte: String
+  proposed_duration_contains: String
+  proposed_duration_not_contains: String
+  proposed_duration_starts_with: String
+  proposed_duration_not_starts_with: String
+  proposed_duration_ends_with: String
+  proposed_duration_not_ends_with: String
+  AND: [ProjectApplicationWhereInput!]
+  OR: [ProjectApplicationWhereInput!]
+  NOT: [ProjectApplicationWhereInput!]
+}
+
+input ProjectApplicationWhereUniqueInput {
+  id: ID
+}
